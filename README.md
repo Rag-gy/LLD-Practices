@@ -1,7 +1,33 @@
-LLD Practices for improving code quality and code practices
+# LLD Practices
 
-1. Parking Lot Management - Copilot review score ( 7 / 10 ), Time taken - 45 mins
+A collection of Low-Level Design (LLD) exercises to improve code quality and design practices.
 
-2. Stack Overflow - Copilot review score ( 8 / 10 ), Time taken - 45 mins
-     In this I've learnt that adding synchronised to the function will make the function synchronised to that particular object
-     Also using Atomic Integer is useful for maintaining synchronised integer
+---
+
+## Table of Contents
+
+- [Practices](#practices)
+- [Learnings](#learnings)
+
+---
+
+## Practices
+
+### 1. Parking Lot Management
+
+- **Copilot Review Score:** 7 / 10
+- **Time Taken:** 45 mins
+
+### 2. Stack Overflow
+
+- **Copilot Review Score:** 8 / 10
+- **Time Taken:** 45 mins
+
+---
+
+## Learnings
+
+- Adding `synchronized` to a function ensures thread safety for that particular object.
+- Using `AtomicInteger` is useful for maintaining a synchronized integer in concurrent environments.
+
+---
