@@ -7,23 +7,26 @@ A collection of Low-Level Design (LLD) exercises to improve code quality and des
 ## Table of Contents
 
 - [Practices](#practices)
+  - [Parking Lot Management](./ParkingLotManagement/)
+  - [Stack Overflow](./StackOverflow/)
+  - [Vending Machine](./VendingMachine/)
 - [Learnings](#learnings)
 
 ---
 
 ## Practices
 
-### 1. Parking Lot Management
+### [1. Parking Lot Management](./ParkingLotManagement/)
 
 - **Copilot Review Score:** 7 / 10
 - **Time Taken:** 45 mins
 
-### 2. Stack Overflow
+### [2. Stack Overflow](./StackOverflow/)
 
 - **Copilot Review Score:** 8 / 10
 - **Time Taken:** 45 mins
 
-### 3. Vending Machine
+### [3. Vending Machine](./VendingMachine/)
 
 - **Copilot Review Score:** 7.5 / 10
 - **Time Taken:** 60 mins
