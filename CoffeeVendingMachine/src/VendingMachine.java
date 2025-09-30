@@ -11,18 +11,17 @@ public class VendingMachine {
     private int balance = 0;
     private Coffee selectedCoffee = null;
     private VendingMachineState currentState = new ReadyState();
-//  Initially the machine will be in Ready State
     private Map<Ingredients, Integer> ingredients = new HashMap<Ingredients, Integer>();
 
     public void selectCoffee(Coffee coffee){
-        if(!(currentState instanceof ReadyState)){
+        if(!(this.currentState instanceof ReadyState)){
             System.out.println("Coffee Already Selected or ");
         }
-        selectedCoffee = coffee;
+        this.selectedCoffee = coffee;
     }
 
     public void addMoney(Integer money){
-        if(!(currentState instanceof SelectedState)){
+        if(!(this.currentState instanceof SelectedState)){
             System.out.println("Coffee not selected. Please select your coffee");
         }
         else if(money<0){
@@ -30,22 +29,38 @@ public class VendingMachine {
         }
         else {
             this.balance+=money;
-            if(selectedCoffee.getPrice() <= this.balance){
-                currentState = new PaidState();
+            if(this.selectedCoffee.getPrice() <= this.balance){
+                this.currentState = new PaidState();
             }
         }
     }
 
     public void dispenseCoffee(){
-        if(!(currentState instanceof PaidState)){
+        if(!(this.currentState instanceof PaidState) || this.selectedCoffee == null){
             System.out.println("No coffee selected for dispense");
             return;
         }
-        // Check ingredients availability and Dispense coffee and reduce the ingredients
+        Map<Ingredients, Integer> ingredientsToMakeCoffee = this.selectedCoffee.getIngredients();
+        ingredientsToMakeCoffee.forEach((ingredient, count) -> {
+            if(!this.ingredients.containsKey(ingredient) || this.ingredients.get(ingredient) < count){
+                System.out.println("Insufficient ingredient");
+                this.currentState = new OutOfIngredientState();
+                return;
+            }
+        });
+        ingredientsToMakeCoffee.forEach((ingredient, count) -> {
+            this.ingredients.put(ingredient, this.ingredients.get(ingredient)-count);
+        });
+        this.currentState = new ReadyState();
     }
 
     public void returnBalance(){
-        // Check and return the balances accordingly
+        if(this.selectedCoffee != null){
+            System.out.println("A coffee is currently selected. Either pay up or cancel the current transaction");
+            return;
+        }
+        System.out.println("Returning the balance..." + this.balance);
+        this.balance = 0;
     }
 
     public void refillIngredients(Ingredients ingredient, int quantity){
@@ -53,8 +68,8 @@ public class VendingMachine {
             System.out.println("Add Valid Quantity Count");
             return;
         }
-        int ingredientCount = ingredients.getOrDefault(ingredient, 0);
-        ingredients.put(ingredient, ingredientCount+quantity);
+        int ingredientCount = this.ingredients.getOrDefault(ingredient, 0);
+        this.ingredients.put(ingredient, ingredientCount+quantity);
         System.out.println("Refilled ingredients successfully");
     }
 
