@@ -1,18 +1,25 @@
 package model.coffee;
 
+import java.util.Map;
+
 public abstract class Coffee {
-    public int sugarCubeCount;
-    public int coffeePercentage;
-    public int milkPercentage;
+
+    public Map<Ingredients, Integer> ingredients;
     public int price;
 
-    public Coffee(Integer sugarCubeCount, Integer coffeePercentage, Integer milkPercentage, Integer price) throws Exception {
-        if(sugarCubeCount < 0 || price < 0 || coffeePercentage < 0 || coffeePercentage > 100 || milkPercentage < 0 || milkPercentage > 100 || milkPercentage + coffeePercentage != 100){
-            throw new Exception("Invalid proportion of sugar, milk, coffee or price ");
+    public Coffee(Integer price, Map<Ingredients, Integer> coffeeIngredients) throws Exception {
+        if(price < 0 || coffeeIngredients.isEmpty()){
+            throw new Exception("Invalid ingredients or price ");
         }
-        this.coffeePercentage = coffeePercentage;
-        this.sugarCubeCount = sugarCubeCount;
-        this.milkPercentage = milkPercentage;
+        this.ingredients = coffeeIngredients;
         this.price = price;
+    }
+
+    public int getPrice(){
+        return this.price;
+    }
+
+    public Map<Ingredients, Integer> getIngredients(){
+        return this.ingredients;
     }
 }

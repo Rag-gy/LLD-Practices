@@ -13,12 +13,15 @@ public class ReadyState implements VendingMachineState{
     @Override
     public void cancel(VendingMachine machine) {
         System.out.println("No coffee selected. Nothing to cancel");
+        System.out.println("Returning the balance if any....");
+        machine.returnBalance();
     }
 
     @Override
-    public void insertMoney(VendingMachine machine, int money) {
+    public void insertMoney(VendingMachine machine, Integer money) {
         System.out.println("Select coffee first");
     }
+
 
     @Override
     public void selectCoffee(VendingMachine machine, Coffee coffee) {

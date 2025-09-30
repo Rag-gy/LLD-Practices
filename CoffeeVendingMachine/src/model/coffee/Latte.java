@@ -1,8 +1,10 @@
 package model.coffee;
 
+import java.util.Map;
+
 public class Latte extends Coffee{
 
     public Latte() throws Exception {
-        super(2, 30, 70, 130);
+        super(140, Map.of(Ingredients.COFFEE, 3, Ingredients.SUGAR, 3, Ingredients.MILK, 15));
     }
 }
